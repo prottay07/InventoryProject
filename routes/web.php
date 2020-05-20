@@ -123,11 +123,11 @@ Route::get('/edit-category/{id}', 'CategoryController@EditCategory' );
 Route::post('/update-category/{id}', 'CategoryController@UpdateCategory');
 
 
-// Category Routes Are Here.......
+// Products Routes Are Here.......
 
-Route::get('/add-product', 'CategoryController@AddProduct')->name('add.product');
-// Route::post('/insert-category', 'CategoryController@InsertCategory');
-Route::get('/all-product', 'CategoryController@AllProduct')->name('all.product');
+Route::get('/add-product', 'ProductController@AddProduct')->name('add.product');
+Route::post('/insert-product', 'ProductController@InsertProduct');
+Route::get('/all-product', 'ProductController@AllProduct')->name('all.product');
 
 
 // Route::get('/delete-category/{id}', 'CategoryController@DeleteCategory');

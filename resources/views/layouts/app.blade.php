@@ -262,29 +262,24 @@
                                     
                                 </ul>
                             </li>
-                                                       
-                            <li>
-                                <a href="table.html">
-                                    <i class="fas fa-table"></i>Tables</a>
-                            </li>
-                           
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-copy"></i>Pages</a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li>
-                                        <a href="login.html">Login</a>
-                                    </li>
-                                    <li>
-                                        <a href="register.html">Register</a>
-                                    </li>
-                                    <li>
-                                        <a href="forget-pass.html">Forget Password</a>
-                                    </li>
-                                </ul>
-                            </li>
-                          
-                        </ul>
+            <li class="has-sub">
+                <a class="js-arrow" href="#">
+                    <i class="fas fa-users"></i> Products <i class="fas fa-caret-down"></i></a>
+                    
+                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                    <li>
+                        <a href="{{ route('add.product')}}"><i class="fas fa-user-plus"></i>Add Product</a>
+                    </li>
+
+                    
+                    <li>
+                        <a href="{{ route('all.product')}}"><i class="fas fa-server"></i>All Products</a>
+                    </li>
+
+                    
+                </ul>
+            </li>                            
+                      
                     </nav>
                 </div>
             </aside>
@@ -437,20 +432,7 @@
                                                         <span class="email">johndoe@example.com</span>
                                                     </div>
                                                 </div>
-                                                <div class="account-dropdown__body">
-                                                    <div class="account-dropdown__item">
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-account"></i>Account</a>
-                                                    </div>
-                                                    <div class="account-dropdown__item">
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                    </div>
-                                                    <div class="account-dropdown__item">
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                                    </div>
-                                                </div>
+                                           
                                                 <div class="account-dropdown__footer">
                                                     <a href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
