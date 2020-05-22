@@ -13,6 +13,7 @@
              
                 <div class="card-header">
                     <strong>Add</strong> Product
+                    <a href="{{ route('all.product') }}" class="btn btn-sm btn-info pull-right">All Product</a>
                 </div>
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -91,7 +92,7 @@
                                 <label for="hf-type" class=" form-control-label">Type</label>
                             </div>
                             <div class="col-12 col-md-9 form_control">
-                                <input type="radio" name="type" > Brand New <span style="margin: 10px"> <input type="radio" name="type"> Recondition <br></span>
+                                <input type="radio" value="Brand New" name="type" > Brand New <span style="margin: 10px"> <input type="radio" value="Recondition" name="type"> Recondition <br></span>
                                 
                                
                             </div>
@@ -151,10 +152,20 @@
                         
                         <div class="row form-group">
                             <div class="col col-md-3">
-                                <label for="hf-price" class=" form-control-label">Price</label>
+                                <label for="hf-buying_price" class=" form-control-label">Buying Price</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <input type="text" id="hf-expired_date" name="price" placeholder="Price..." class="form-control">
+                                <input type="text" id="hf-buying_price" name="buying_price" placeholder=" Buying Price..." class="form-control">
+                               
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="hf-selling_price" class=" form-control-label">Selling Price</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="hf-selling_price" name="selling_price" placeholder=" Selling Price..." class="form-control">
                                
                             </div>
                         </div>

@@ -130,12 +130,39 @@ Route::post('/insert-product', 'ProductController@InsertProduct');
 Route::get('/all-product', 'ProductController@AllProduct')->name('all.product');
 
 
-// Route::get('/delete-category/{id}', 'CategoryController@DeleteCategory');
+Route::get('/delete-product/{id}', 'ProductController@DeleteProduct');
 
 // //Edit single category
 
-// Route::get('/edit-category/{id}', 'CategoryController@EditCategory' );
+Route::get('/edit-product/{id}', 'ProductController@EditProduct' );
 
 // // update single category
 
-// Route::post('/update-category/{id}', 'CategoryController@UpdateCategory');
+Route::post('/update-product/{id}', 'ProductController@UpdateProduct');
+Route::get('/view-product/{id}', 'ProductController@ViewProduct');
+
+// Expense Routes are here
+
+Route::get('/add-expense','ExpenseController@AddExpense')->name('add.expense');
+Route::post('/insert-expense','ExpenseController@InsertExpense');
+Route::get('/today-expense','ExpenseController@TodayExpense')->name('today.expense');
+Route::get('/edit-today/{id}','ExpenseController@EditTodayExpense');
+Route::post('/update-today/{id}','ExpenseController@UpdateTodayExpense');
+
+Route::get('/monthly-expense','ExpenseController@MonthlyExpense')->name('monthly.expense');
+Route::get('/yearly-expense','ExpenseController@YearlyExpense')->name('yearly.expense');
+
+// Month Wise routes
+
+Route::get('/jan-expense','ExpenseController@JanuaryExpense')->name('jan.expense');
+Route::get('/feb-expense','ExpenseController@FebruaryExpense')->name('feb.expense');
+Route::get('/mar-expense','ExpenseController@MarchExpense')->name('mar.expense');
+Route::get('/apr-expense','ExpenseController@AprilExpense')->name('apr.expense');
+Route::get('/may-expense','ExpenseController@MayExpense')->name('may.expense');
+Route::get('/jun-expense','ExpenseController@JuneExpense')->name('jun.expense');
+Route::get('/jul-expense','ExpenseController@JulyExpense')->name('jul.expense');
+Route::get('/aug-expense','ExpenseController@AugustExpense')->name('aug.expense');
+Route::get('/sep-expense','ExpenseController@SeptemberExpense')->name('sep.expense');
+Route::get('/oct-expense','ExpenseController@OctoberExpense')->name('oct.expense');
+Route::get('/nov-expense','ExpenseController@NovemberExpense')->name('nov.expense');
+Route::get('/dec-expense','ExpenseController@DecemberExpense')->name('dec.expense');

@@ -278,7 +278,32 @@
 
                     
                 </ul>
-            </li>                            
+            </li>    
+            
+            <li class="has-sub">
+                <a class="js-arrow" href="#">
+                    <i class="fas fa-users"></i> Expense <i class="fas fa-caret-down"></i></a>
+                    
+                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                    <li>
+                        <a href="{{ route('add.expense')}}"><i class="fas fa-user-plus"></i>Add New</a>
+                    </li>
+
+                    
+                    <li>
+                        <a href="{{ route('today.expense')}}"><i class="fas fa-server"></i>Today's expense</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('monthly.expense')}}"><i class="fas fa-server"></i>Monthly expense</a>
+                    </li>
+                    
+                    <li>
+                        <a href="{{ route('yearly.expense')}}"><i class="fas fa-server"></i>Yearly expense</a>
+                    </li>
+                    
+                </ul>
+            </li>
                       
                     </nav>
                 </div>

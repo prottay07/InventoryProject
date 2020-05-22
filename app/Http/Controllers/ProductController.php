@@ -23,18 +23,18 @@ class ProductController extends Controller
     {
 
         
-        // $validatedData = $request->validate([
-        //     'product_name' => 'required|max:255',
-        //     'product_code' => 'required|max:255',
-        //     'cat_id' => 'required',
-        //     'sup_id' => 'required',
-        //     'type' => 'required',
-        //     'condition' => 'required',
-        //     'product_position' => 'required',
-        //     'purchase_date' => 'required',
+        $validatedData = $request->validate([
+            'product_name' => 'required|max:255',
+            'product_code' => 'required|max:255',
+            'cat_id' => 'required',
+            'sup_id' => 'required',
+            'type' => 'required',
+            'condition' => 'required',
+            'product_position' => 'required',
+            'purchase_date' => 'required',
             
             
-        // ]);
+        ]);
 
         $data= array();
         $data['product_name']=$request->product_name;
@@ -48,7 +48,8 @@ class ProductController extends Controller
         $data['purchase_date']=$request->purchase_date;
         $data['expired_date']=$request->expired_date;
         $data['waranty_date']=$request->waranty_date;
-        $data['price']=$request->price;
+        $data['buying_price']=$request->buying_price;
+        $data['selling_price']=$request->selling_price;
 
         $product=DB::table('products')
                          ->insert($data);
@@ -115,121 +116,98 @@ class ProductController extends Controller
 
     }
 
-    // public function ViewEmployee($id)
-    // {
-    //      $single = DB::table('employees')->where('id', $id)->first();
+    public function ViewProduct($id)
+    {
+         $prod = DB::table('products')
+                    ->join('suppliers','products.sup_id','suppliers.id')
+                    ->join('categories','products.cat_id','categories.id')
+                    ->select('products.*', 'suppliers.name', 'categories.cat_name')
+                    ->where('products.id', $id)
+                    ->first();
          
 
-    //      return view('view_employee', compact('single'));
+         return view('view_product', compact('prod'));
 
-    // }
+    }
 
-    // public function DeleteEmployee($id)
-    // {
-    //      $delete = DB::table('employees')
-    //      ->where('id', $id)
-    //      ->first();
+    public function DeleteProduct($id)
+    {
+         $delete = DB::table('products')
+         ->where('id', $id)
+         ->delete();
 
-    //      $photo= $delete->photo;
-    //      unlink($photo);
-
-    //      $dltusr = DB::table('employees')
-    //                 ->where('id', $id)
-    //                 ->delete();
-        
-    //                 if ($dltusr) {
-    //                     $notification=array(
-    //                     'messege'=>'Successfully Employee Deleted ',
-    //                     'alert-type'=>'success'
-    //                      );
-    //                    return Redirect()->route('all.employee')->with($notification);                      
-    //                 }else{
-    //                  $notification=array(
-    //                     'messege'=>'error ',
-    //                     'alert-type'=>'success'
-    //                      );
-    //                     return Redirect()->back()->with($notification);
-    //                 }      
+        if ($delete) {
+            $notification=array(
+            'messege'=>'Successfully Product Deleted ',
+            'alert-type'=>'success'
+                );
+            return Redirect()->route('all.product')->with($notification);                      
+        }else{
+            $notification=array(
+            'messege'=>'error ',
+            'alert-type'=>'success'
+                );
+            return Redirect()->back()->with($notification);
+        }      
                        
-    //                }
+    }  // End Function
                
-    //     public function EditEmployee($id)
-    //     {
-    //         $edit = DB::table('employees')
-    //                 ->where('id', $id)
-    //                 ->first();
-    //         return view('edit_employee', compact('edit'));
-    //     }
+        public function EditProduct($id)
+        {
+            $edit = DB::table('products')
+                    ->where('id', $id)
+                    ->first();
+            return view('edit_product', compact('edit'));
+        }
          
-    //     public function UpdateEmployee(Request $request, $id)
-    //     {
-    //         $validatedData = $request->validate([
-    //             'name' => 'required|max:255',
-    //             'email' => 'required|email|max:255',
-    //             'nid_no' => 'required|max:17',
-    //             'address' => 'required',
-    //             'experience' => 'required',
-    //             'salary' => 'required',
-    //             'leave' => 'required',
-    //             'city' => 'required',
+        public function UpdateProduct(Request $request, $id)
+        {
+            $validatedData = $request->validate([
+                'product_name' => 'required|max:255',
+                'product_code' => 'required|max:255',
+                'cat_id' => 'required',
+                'sup_id' => 'required',
+                'type' => 'required',
+                'condition' => 'required',
+                'product_position' => 'required',
+                'purchase_date' => 'required',
                 
-    //             'phone' => 'required|max:20',
-    //         ]);
+                
+            ]);
     
-    //         $data= array();
-    //         $data['name']=$request->name;
-    //         $data['email']=$request->email;
-    //         $data['address']=$request->address;
+            $data= array();
+            $data['product_name']=$request->product_name;
+            $data['product_code']=$request->product_code;
+            $data['cat_id']=$request->cat_id;
+            $data['sup_id']=$request->sup_id;
+            $data['type']=$request->type;
+            $data['condition']=$request->condition;
+            $data['product_position']=$request->product_position;
+            $data['purchase_date']=$request->purchase_date;
+            $data['expired_date']=$request->expired_date;
+            $data['waranty_date']=$request->waranty_date;
+            $data['buying_price']=$request->buying_price;
+            $data['selling_price']=$request->selling_price;
             
-    //         $data['experience']=$request->experience;
-    //         $data['salary']=$request->salary;
-    //         $data['leave']=$request->leave;
-    //         $data['phone']=$request->phone;
-    //         $data['nid_no']=$request->nid_no;
-    //         $data['city']=$request->city;
-    //         $image=$request->photo;
     
-    //         if ($image) {
-    //             // $filename = Str::random(40)
-    //             $image_name= Str::random(40);
-    //             $ext=strtolower($image->getClientOriginalExtension());
-    //             $image_full_name=$image_name.'.'.$ext;
-    //             $upload_path='public/employee/';
-    //             $image_url=$upload_path.$image_full_name;
-    //             $success=$image->move($upload_path,$image_full_name);
-    //             if ($success) {
-    //                 $data['photo']=$image_url;
+            $update=DB::table('products')
+                            ->where('id', $id)
+                             ->Update($data);
 
-    //                 $img = DB::table('employees')->where('id', $id)->first();
-    //                 $image_path = $img->photo;
-    //                 $done = unlink($image_path);
-    //                 $updateEmployee=DB::table('employees')
-    //                         ->where('id', $id)
-    //                          ->update($data);
-                             
-    //               if ($updateEmployee) {
-    //                  $notification=array(
-    //                  'messege'=>'Successfully Employee Updated ',
-    //                  'alert-type'=>'success'
-    //                   );
-    //                 return Redirect()->route('all.employee')->with($notification);                      
-    //              }else{
-    //               $notification=array(
-    //                  'messege'=>'error ',
-    //                  'alert-type'=>'success'
-    //                   );
-    //                  return Redirect()->back()->with($notification);
-    //              }      
-                    
-    //             }else{
+                  if ($update) {
+                     $notification=array(
+                     'messege'=>'Successfully product Updated ',
+                     'alert-type'=>'success'
+                      );
+                    return  Redirect()->route('all.product')->with($notification);
     
-    //               return Redirect()->back();
-                    
-    //             }
-    //         }else{
-    //               return Redirect()->back();
-    //         }
+                  }
     
+                  else{
+    
+                    return Redirect()->back();
+                     }
+        }
 
         
 }
